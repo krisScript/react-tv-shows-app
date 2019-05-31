@@ -8,6 +8,7 @@ class ShowsStore {
   @observable currentPage: number = 1;
   @observable nextUrl: string = '';
   @observable previousUrl: string = '';
+  @observable currentShow: string = '';
   @action getCurrentPage(): void {
     getData(this.currentUrl).then(data => {
       console.log(data);

@@ -13,7 +13,7 @@ const Router: FunctionComponent = () => {
           <Route exact path="/" component={ShowsContainer} />
           <Route
             exact
-            path="/show/:showName"
+            path="/show/:showId"
             render={() => (
               <Suspense fallback={<Spin size="large" />}>
                 <ShowPage />

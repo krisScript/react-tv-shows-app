@@ -13,10 +13,9 @@ const ShowCard: FunctionComponent<ShowCardProps> = ({ show }) => {
     justifyContent: 'center',
     padding: '1rem'
   };
-  console.log(show);
   return (
     <Col style={style} xs={20} sm={16} md={12} lg={8} xl={4}>
-      <Link to={`/show/${show.name}`}>
+      <Link to={`/show/${show.id}`}>
         <Card
           hoverable
           style={{ width: 240 }}

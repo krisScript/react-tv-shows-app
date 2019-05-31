@@ -9,6 +9,11 @@ const SearchBar: FunctionComponent = () => {
           placeholder="Show Name"
         />
       </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Search
+        </Button>
+      </Form.Item>
     </Form>
   );
 };
