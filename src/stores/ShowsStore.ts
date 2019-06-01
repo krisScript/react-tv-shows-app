@@ -3,29 +3,18 @@ import { SetStateAction, Dispatch, createContext } from 'react';
 import getData from '../util/getData';
 class ShowsStore {
   @observable shows: any[] = [];
-  @observable
-  currentUrl: string = ` https://www.episodate.com/api/most-popular?page=1`;
-  @observable currentPage: number = 1;
-  @observable nextUrl: string = '';
-  @observable previousUrl: string = '';
-  @observable currentShow: string = '';
-  @action getCurrentPage(): void {
-    getData(this.currentUrl).then(data => {
-      console.log(data);
-      this.shows = data.tv_shows;
-    });
-  }
+  @observable pages: number = 0;
 
-  @action incrementPage(): void {
-    if (this.nextUrl !== '') {
-      this.currentUrl = this.nextUrl;
+  @action getPage = async (page: number): Promise<void> => {
+    try {
+      const url = `https://www.episodate.com/api/most-popular?page=${page}`;
+      const response = await getData(url);
+      this.shows = response.tv_shows;
+      this.pages = response.pages;
+    } catch (err) {
+      console.log(err);
     }
-  }
-  @action decrementPage(): void {
-    if (this.previousUrl !== '') {
-      this.currentUrl = this.previousUrl;
-    }
-  }
+  };
 }
 
 const ShowsStoreContext = createContext(new ShowsStore());
