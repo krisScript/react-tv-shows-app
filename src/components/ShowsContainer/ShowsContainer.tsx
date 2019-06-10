@@ -1,15 +1,10 @@
-import React, {
-  FunctionComponent,
-  useEffect,
-  useContext,
-  useState,
-  SyntheticEvent
-} from 'react';
+import React, { FunctionComponent, useEffect, useContext } from 'react';
 
 import { Row, Button, Icon, Col, Pagination } from 'antd';
 import ShowsStoreContext from '../../stores/ShowsStore';
 import { observer } from 'mobx-react-lite';
 import ShowCard from '../ShowCard/ShowCard';
+import { Spin } from 'antd';
 const ShowContainer: FunctionComponent = observer(() => {
   const showsStore = useContext(ShowsStoreContext);
   useEffect(() => {
@@ -21,6 +16,7 @@ const ShowContainer: FunctionComponent = observer(() => {
   };
   return (
     <>
+    {showsStore.shows.length > 0 ? <> 
       <Row
         type="flex"
         align="middle"
@@ -47,7 +43,8 @@ const ShowContainer: FunctionComponent = observer(() => {
             onChange={PaginationHandler}
           />
         </Col>
-      </Row>
+    </Row></> : <div style={{display:'grid',justifyContent:'center',alignContent:'center',height:'100vh'}}><Spin size="large"/> </div>}
+      
     </>
   );
 });
