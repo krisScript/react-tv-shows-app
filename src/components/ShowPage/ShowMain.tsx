@@ -1,25 +1,32 @@
-import React, { FunctionComponent } from 'react';
-import { Card } from 'antd';
+import React, { FunctionComponent } from "react";
+import { Card, Typography } from "antd";
+import Show from "./../../types/Show";
 const { Meta } = Card;
-interface ShowMainProps {
-  imgSrc: string;
-  name: string;
-  description: string;
-}
-const ShowMain: FunctionComponent<ShowMainProps> = ({
-  imgSrc,
-  name,
-  description
-}) => {
-  return (
-    <Card hoverable cover={<img alt={name} src={imgSrc} />}>
-      <Meta
-        style={{ padding: '20px' }}
-        title={name}
-        description={description}
-      />
+const { Text } = Typography;
 
-      {/* <Skeleton loading={loading} avatar active /> */}
+interface ShowMainProps {
+  show: Show;
+}
+const ShowMain: FunctionComponent<ShowMainProps> = ({ show }) => {
+  const { name, description, network, end_date, start_date } = show;
+  return (
+    <Card
+      hoverable
+      cover={<img alt={show.name} src={show.image_thumbnail_path} />}
+    >
+      <Meta
+        style={{ padding: "20px" }}
+        title={name}
+        description={[
+          <Text>Start date: {end_date ? end_date : "None"}</Text>,
+          <br />,
+          <Text>End date: {start_date}</Text>,
+          <br />,
+          <Text>Network: {network}</Text>,
+          <br />,
+          <Text>{description}</Text>
+        ]}
+      />
     </Card>
   );
 };

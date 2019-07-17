@@ -1,17 +1,17 @@
-import React, { FunctionComponent } from 'react';
-import { Card, Col } from 'antd';
-import ShowPreview from '../../types/ShowPreview';
-import { Link } from 'react-router-dom';
+import React, { FunctionComponent } from "react";
+import { Card, Col } from "antd";
+import ShowPreview from "../../types/ShowPreview";
+import { Link } from "react-router-dom";
 const { Meta } = Card;
 interface ShowCardProps {
   show: ShowPreview;
 }
 const ShowCard: FunctionComponent<ShowCardProps> = ({ show }) => {
   const style = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '1rem'
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: "1rem"
   };
   return (
     <Col style={style} xs={20} sm={16} md={12} lg={8} xl={4}>

@@ -1,15 +1,16 @@
-import React, { FunctionComponent, useState, useEffect } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import { Row, Col } from 'antd';
-import Show from '../../types/Show';
-import getData from '../../util/getData';
-import Seasons from './Seasons';
-import ShowMain from './ShowMain';
+import React, { FunctionComponent, useState, useEffect } from "react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import { Row, Col, Typography } from "antd";
+import Show from "../../types/Show";
+import getData from "../../util/getData";
+import Seasons from "./Seasons";
+import ShowMain from "./ShowMain";
+const { Text } = Typography;
 const style = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '1rem'
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "1rem"
 };
 interface MatchProps {
   showId: string;
@@ -27,7 +28,6 @@ const ShowPage: FunctionComponent<ShowPageProps> = ({ match }) => {
         if (data) {
           setLoading(false);
           setShow(data.tvShow);
-
           const seasons = data.tvShow.episodes.reduce(
             (accumulator: any, currentValue: any) => {
               if (accumulator[currentValue.season]) {
@@ -57,11 +57,7 @@ const ShowPage: FunctionComponent<ShowPageProps> = ({ match }) => {
         <>
           <Row gutter={8}>
             <Col style={style} xs={30} sm={30} md={12} lg={8} xl={8}>
-              <ShowMain
-                description={show.description}
-                imgSrc={show.image_thumbnail_path}
-                name={show.name}
-              />
+              <ShowMain show={show} />
             </Col>
             <Col style={style} xs={30} sm={30} md={12} lg={8} xl={8}>
               <Seasons seasons={seasons} />
@@ -69,7 +65,7 @@ const ShowPage: FunctionComponent<ShowPageProps> = ({ match }) => {
           </Row>
         </>
       ) : (
-        ''
+        ""
       )}
     </>
   );
